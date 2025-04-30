@@ -22,6 +22,7 @@ class QueryExecutor:
         transport = AIOHTTPTransport(
             url=API_ENDPOINT,
             headers={"Authorization": "Bearer " + self.token},
+            ssl=True,
             **transport_kwargs,
         )
         self.gql_client = gql.Client(
