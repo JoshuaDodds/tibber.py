@@ -12,7 +12,11 @@ class Account(QueryExecutor):
     """The main Tibber class to communicate with the Tibber API."""
 
     def __init__(
-        self, token: str, user_agent: str = None, immediate_update: bool = True
+        self,
+        token: str,
+        user_agent: str = None,
+        immediate_update: bool = True,
+        transport_kwargs={},
     ):
         """Initialize the tibber client.
 
@@ -26,7 +30,7 @@ class Account(QueryExecutor):
         self._token: str = token
         self.user_agent = user_agent
 
-        super().__init__()
+        super().__init__(transport_kwargs=transport_kwargs)
 
         if immediate_update:
             self.fetch_all()

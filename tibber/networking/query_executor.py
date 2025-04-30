@@ -17,11 +17,12 @@ _logger = logging.getLogger(__name__)
 class QueryExecutor:
     """A class for executing queries."""
 
-    def __init__(self, session=None):
+    def __init__(self, session=None, transport_kwargs={}):
         self.gql_client = None
         transport = AIOHTTPTransport(
             url=API_ENDPOINT,
             headers={"Authorization": "Bearer " + self.token},
+            **transport_kwargs,
         )
         self.gql_client = gql.Client(
             transport=transport, fetch_schema_from_transport=True
